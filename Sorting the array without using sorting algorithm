@@ -1,0 +1,39 @@
+//sorting the array without using sorting algorithm 
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+void sortarray(int A[],int n)
+{
+    int c0=0,c1=0,c2=0;
+    int k=0;
+    
+    for(int i=0;i<n;i++)
+    {
+        if(A[i]==0) c0++;
+        else if(A[i]==1) c1++;
+        else c2++;
+    }
+    
+    for(int i=0;i<c0;i++) A[k++]=0;
+    for(int i=0;i<c1;i++) A[k++]=1;
+    for(int i=0;i<c2;i++) A[k++]=2;
+    
+    
+    for(int i=0;i<n;i++)
+    {
+        cout<<A[i]<<" ";
+    }
+    
+}
+
+int main()
+{
+    int A[]={2,1,2,0,0,2,1,2,0,1,0,1,1,1};
+    int n = sizeof(A) / sizeof(A[0]);
+    
+    sortarray(A,n);
+    
+    return 0;
+}
