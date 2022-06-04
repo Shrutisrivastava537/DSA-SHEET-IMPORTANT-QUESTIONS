@@ -1,0 +1,36 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+void MaxandMin(int A[],int n)
+{
+    int max1=A[0];
+    int min1=A[0];
+    
+    for(int i=1;i<n;i++)
+    {
+        if(A[i]>max1)
+        {
+            max1=max(max1,A[i]);
+        }
+        
+        if(A[i]<min1)
+        {
+            min1=min(min1,A[i]);
+        }
+    }
+    
+    cout<<"MAX NUMBER "<<max1<<" "<<"MIN NUMBER "<<min1<<" ";
+}
+
+
+
+int main()
+{
+    int A[]={1,2,3,4,5,6,7,8,9,10};
+    int n= sizeof(A)/sizeof(A[0]);
+    
+    MaxandMin(A,n);
+    
+    return 0;
+}
