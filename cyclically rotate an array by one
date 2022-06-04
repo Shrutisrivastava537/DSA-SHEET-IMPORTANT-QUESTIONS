@@ -1,0 +1,35 @@
+//cyclically rotate an array by one 
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+void cyclicallyrotation(int A[],int n)
+{
+    int last=A[n-1];
+    for(int i=n-1;i>0;i--)
+    {
+        A[i]=A[i-1];
+    }
+    A[0]=last;
+}
+
+void display(int A[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        cout<<A[i]<<" ";
+    }
+}
+
+
+int main()
+{
+    int A[]={1,2,3,4,5,6,7,8,9};
+    int n = sizeof(A) / sizeof(A[0]);
+    
+    cyclicallyrotation(A,n);
+    display(A,n);
+    
+    return 0;
+}
