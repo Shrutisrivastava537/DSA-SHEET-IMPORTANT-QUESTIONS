@@ -1,0 +1,28 @@
+//find the median 
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int  median1(int A[],int n)
+{
+    sort(A,A+n);
+    
+    if(n%2!=0)
+    {
+        return A[n/2];
+    }
+    return (A[(n)/2]+ A[(n/2)-1]) / 2;
+}
+
+
+
+int main()
+{
+    int A[]={1,2,3,4,5,6,7,8,9,10};
+    int n=sizeof(A) / sizeof(A[0]);
+    
+   cout<<median1(A,n);
+    
+    return 0;
+}
