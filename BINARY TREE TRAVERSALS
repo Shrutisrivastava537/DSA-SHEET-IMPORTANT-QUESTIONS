@@ -1,0 +1,194 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    Node *lchild;
+    int data;
+    Node *rchild;
+}*root=NULL;
+
+// Creating a Binary Tree
+
+void treecreate()
+{
+    Node *t,*p;
+    int x;
+    
+    queue<Node *> q;
+    cout<<"ENTER THE ROOT VALUE :";
+    cin>>x;
+    
+    root=new Node;
+    root->data=x;
+    root->lchild=root->rchild=NULL;
+    q.push(root);
+    
+    while(!q.empty())
+    {
+        p=q.front();
+        q.pop();
+        
+        cout<<"ENTER LEFT CHILD 0F "<<p->data<<" : ";
+        cin>>x;
+        
+        if(x!=-1)
+        {
+            t=new Node;
+            t->data=x;
+            t->lchild=t->rchild=NULL;
+            p->lchild=t;
+            q.push(t);
+        }
+        
+        cout<<"ENTER RIGHT CHILD OF "<<p->data<<" : ";
+        cin>>x;
+        
+        if(x!=-1)
+        {
+            t=new Node;
+            t->data=x;
+            t->lchild=t->rchild=NULL;
+            p->rchild=t;
+            q.push(t);
+        }
+    }
+}
+
+// ITERATIVE TRAVERSAL OF BINARY TREE
+
+void Ipreorder(Node *root)
+{
+   stack<Node *> s;
+
+   while(root || !s.empty())
+   {
+       if(root)
+       {
+          cout<<root->data<<" ";
+          s.push(root);
+          root=root->lchild;
+       }
+       else
+       {
+           root=s.top();
+           s.pop();
+           root=root->rchild;
+       }
+   }
+}
+
+void Iinorder(Node *root)
+{
+    stack<Node *> s;
+    
+    while(root || !s.empty())
+    {
+        if(root)
+        {
+            s.push(root);
+            root=root->lchild;
+        }
+        else
+        {
+            root=s.top();
+            s.pop();
+            cout<<root->data<<" ";
+            root=root->rchild;
+        }
+    }
+}
+
+void levelorder(Node *root)
+{
+    queue<Node *> q;
+    cout<<root->data<<" ";
+    q.push(root);
+    
+    while(!q.empty())
+    {
+        root=q.front();
+        q.pop();
+        
+        if(root->lchild)
+        {
+            cout<<root->lchild->data<<" ";
+            q.push(root->lchild);
+        }
+        if(root->rchild)
+        {
+            cout<<root->rchild->data<<" ";
+            q.push(root->rchild);
+        }
+    }
+}
+
+
+// RECURSIVE TRAVERSAL OF BINARY TREE 
+
+void Preorder(Node *root)
+{
+    if(root)
+    {
+        cout<<root->data<<" ";
+        Preorder(root->lchild);
+        Preorder(root->rchild);
+    }
+}
+
+void Inorder(Node *root)
+{
+    if(root)
+    {
+        Inorder(root->lchild);
+        cout<<root->data<<" ";
+        Inorder(root->rchild);
+    }
+}
+
+
+void Postorder(Node *root)
+{
+    if(root)
+    {
+        Postorder(root->lchild);
+        Postorder(root->rchild);
+        cout<<root->data<<" ";
+    }
+}
+
+
+
+
+
+
+int main()
+{
+    treecreate();
+    cout<<endl;
+    cout<<"ITERATIVE PREORDER TRAVERSAL "<<endl;
+    Ipreorder(root);
+    cout<<endl;
+    cout<<"ITERATIVE INORDER TRAVERSAL "<<endl;
+    Iinorder(root);
+    cout<<endl;
+    cout<<"LEVELORDER TRAVERSAL "<<endl;
+    levelorder(root);
+    cout<<endl;
+    cout<<endl;
+    
+    cout<<"1. Recursive Preorder"<<endl;
+    Preorder(root);
+    cout<<endl;
+    
+    cout<<"2. Recursive Inorder "<<endl;
+    Inorder(root);
+    cout<<endl;
+    
+    cout<<"3. Recursive Postorder "<<endl;
+    Postorder(root);
+    cout<<endl;
+    
+    return 0;
+}
