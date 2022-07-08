@@ -1,0 +1,101 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    Node *lchild;
+    int data;
+    Node *rchild;
+}*root=NULL;
+
+// Creating a Binary Tree
+
+void treecreate()
+{
+    Node *t,*p;
+    int x;
+    
+    queue<Node *> q;
+    cout<<"ENTER THE ROOT VALUE :";
+    cin>>x;
+    
+    root=new Node;
+    root->data=x;
+    root->lchild=root->rchild=NULL;
+    q.push(root);
+    
+    while(!q.empty())
+    {
+        p=q.front();
+        q.pop();
+        
+        cout<<"ENTER LEFT CHILD 0F "<<p->data<<" : ";
+        cin>>x;
+        
+        if(x!=-1)
+        {
+            t=new Node;
+            t->data=x;
+            t->lchild=t->rchild=NULL;
+            p->lchild=t;
+            q.push(t);
+        }
+        
+        cout<<"ENTER RIGHT CHILD OF "<<p->data<<" : ";
+        cin>>x;
+        
+        if(x!=-1)
+        {
+            t=new Node;
+            t->data=x;
+            t->lchild=t->rchild=NULL;
+            p->rchild=t;
+            q.push(t);
+        }
+    }
+}
+
+
+Node*  mirrorimage(Node *root)
+{
+     if(!root) return root;
+     
+     Node *t = root->lchild;
+     root->lchild=root->rchild;
+     root->rchild=t;
+    
+    if(root->lchild)
+      mirrorimage(root->lchild);
+    if(root->rchild)
+      mirrorimage(root->rchild);
+      
+      return root;
+}
+
+void inorder(Node* root)
+{
+    if(root!=NULL)
+    {
+        inorder(root->lchild);
+        cout<<root->data<<" ";
+        inorder(root->rchild);
+    }
+}
+
+
+
+
+// MAIN FUNCTION 
+
+int main()
+{
+    treecreate();
+    cout<<endl;
+    
+    mirrorimage(root);
+    cout<<"MIRROR IMAGE "<<endl;
+    inorder(root);
+    
+    return 0;
+}
